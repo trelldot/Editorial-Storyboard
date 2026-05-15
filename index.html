@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 26-Frame Storyboard</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* The Grid Layout */
+        .storyboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Individual Frame Styling */
+        .frame {
+            aspect-ratio: 16 / 9;
+            background-color: #ddd;
+            border: 3px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(45deg, #eee, #ccc);
+        }
+
+        .frame:hover {
+            transform: scale(1.05);
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .frame-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .frame-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .frame-label {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            z-index: 2;
+            color: white;
+            background: rgba(0,0,0,0.45);
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Modal (Pop-up) Styling */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            max-height: 80vh;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Keep reference links from showing underlined alt text when images fail */
+        .modal-content a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .modal-content a img {
+            display: block;
+            border-radius: 6px;
+        }
+
+
+        .refs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+            align-items: center;
+        }
+
+        /* Keep a fixed thumbnail height and let width scale to preserve original aspect ratio */
+        .ref-img {
+            height: 78px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: #eef2f5;
+            cursor: pointer;
+            transition: opacity 0.18s ease, transform 0.12s ease;
+            opacity: 0;
+            display: inline-block;
+        }
+
+        .ref-img.loaded { opacity: 1; }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            max-height: 60vh;
+            min-height: 220px;
+            object-fit: contain;
+            display: block;
+            background-color: #f4f6f8;
+            transition: opacity 0.18s ease;
+            opacity: 0;
+        }
+
+        .modal-text {
+            color: #333;
+            line-height: 1.4;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover { color: red; }
+
+        .modal-header {
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Project Storyboard</h1>
+    <p>Click any frame to view supplementary details.</p>
+
+    <div class="storyboard-grid" id="grid">
+        <!-- Frames will be generated by JavaScript -->
+    </div>
+
+    <!-- The Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle">Frame Details</h2>
+            </div>
+            <div id="modalBody">
+                <!-- Content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. DATA: this includes an `image` property per frame
+        const frameData = {};
+        for (let i = 1; i <= 26; i++) {
+            frameData[i] = {
+                title: `Scene ${i}`,
+                image: i === 1 ? 'images/frame1.jpg' : (i === 2 ? `images/frame2.jpg` : `images/frame${i}.svg`), // try JPG for frames 1 & 2
+                details: `This is the supplementary information for Frame ${i}. <br><br> 
+                          <b>Visuals:</b> Describe the camera angle, lighting, and characters here.<br>
+                          <b>Audio:</b> Dialogue or sound effects for this specific shot.<br>
+                          <b>Notes:</b> Any technical requirements or transition cues.`
+            };
+        }
+
+        // 2. GENERATE GRID: Create the 26 frames automatically with thumbnails
+        const grid = document.getElementById('grid');
+
+        function renderGrid() {
+            grid.innerHTML = '';
+            for (let i = 1; i <= 26; i++) {
+                const frame = document.createElement('div');
+                frame.className = 'frame';
+                frame.dataset.frame = i;
+
+                // thumbnail image (will fallback to placeholder if not found)
+                const img = document.createElement('img');
+                img.className = 'frame-img';
+                img.dataset.frame = i;
+                const data = frameData[i] || { image: `images/frame${i}.svg`, title: `Frame ${i}` };
+                img.src = data.image;
+                img.alt = `Frame ${i} thumbnail`;
+                img.onerror = function() {
+                    const placeholder = `https://via.placeholder.com/640x360.png?text=Frame+${i}`;
+                    if (!this._triedSvg && this.src && this.src.endsWith('.jpg')) {
+                        this._triedSvg = true;
+                        this.src = `images/frame${i}.svg`;
+                    } else {
+                        this.src = placeholder;
+                    }
+                };
+                frame.appendChild(img);
+
+                // overlays: number and label
+                const number = document.createElement('span');
+                number.className = 'frame-number';
+                number.textContent = `#${i}`;
+                frame.appendChild(number);
+
+                const label = document.createElement('div');
+                label.className = 'frame-label';
+                label.textContent = data.title || `Frame ${i}`;
+                frame.appendChild(label);
+
+                frame.onclick = () => openModal(i);
+                grid.appendChild(frame);
+            }
+        }
+
+        // initial render (will be updated by frames.json if available)
+        renderGrid();
+
+        // modal references
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+
+        // 4. AUTO-UPDATE: periodically check for JPGs added to the images/ folder
+        function testImageExists(url, timeout = 3000) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                let timer = setTimeout(() => {
+                    img.onload = img.onerror = null;
+                    resolve(false);
+                }, timeout);
+                img.onload = () => { clearTimeout(timer); resolve(true); };
+                img.onerror = () => { clearTimeout(timer); resolve(false); };
+                img.src = url + (url.includes('?') ? '&' : '?') + 'cb=' + Date.now();
+            });
+        }
+
+        async function checkForNewJPGs() {
+            for (let i = 1; i <= 26; i++) {
+                const jpgPath = `images/frame${i}.jpg`;
+                const found = await testImageExists(jpgPath, 2500);
+                if (found && frameData[i].image !== jpgPath) {
+                    frameData[i].image = jpgPath;
+                    const thumb = document.querySelector(`img.frame-img[data-frame="${i}"]`);
+                    if (thumb) {
+                        thumb.src = jpgPath + '?cb=' + Date.now();
+                    }
+                    // If modal is open for this frame, update modal image too
+                    const modalImg = document.querySelector('.modal-image');
+                    if (modalImg && modalTitle.innerText === frameData[i].title) {
+                        modalImg.src = jpgPath + '?cb=' + Date.now();
+                    }
+                }
+            }
+        }
+
+        // 3. MODAL LOGIC (shows larger image + details)
+        function openModal(id) {
+            const data = frameData[id] || { title: `Frame ${id}`, image: `images/frame${id}.svg`, description: '', process: '', references: [] };
+            modalTitle.innerText = data.title || `Frame ${id}`;
+            modalBody.innerHTML = '';
+
+            const img = document.createElement('img');
+            img.className = 'modal-image';
+            img.src = data.image;
+            img.alt = data.title;
+            // Hide until loaded to avoid layout shifts; fade in on load
+            img.style.opacity = '0';
+            img.onload = function() { this.style.opacity = '1'; };
+            img.onerror = function() {
+                const placeholder = `https://via.placeholder.com/1280x720.png?text=${encodeURIComponent(data.title || 'Frame')}`;
+                if (!this._triedSvg && this.src && this.src.endsWith('.jpg')) {
+                    this._triedSvg = true;
+                    this.src = `images/frame${id}.svg`;
+                } else {
+                    this.src = placeholder;
+                    this.style.opacity = '1';
+                }
+            };
+            modalBody.appendChild(img);
+
+            const text = document.createElement('div');
+            text.className = 'modal-text';
+            text.innerHTML = `<strong>Description:</strong><br>${data.description || ''}<br><br><strong>Process:</strong><br>${data.process || ''}`;
+            modalBody.appendChild(text);
+
+            if (data.references && Array.isArray(data.references) && data.references.length) {
+                const refs = document.createElement('div');
+                refs.style.marginTop = '12px';
+                refs.innerHTML = '<strong>References:</strong>';
+                const list = document.createElement('div');
+                list.style.display = 'flex';
+                list.style.gap = '8px';
+                list.style.marginTop = '8px';
+                    data.references.forEach((url, idx) => {
+                        const rimg = document.createElement('img');
+                        rimg.className = 'ref-img';
+                        rimg.src = url;
+                        rimg.alt = '';
+                        // fade in when loaded
+                        rimg.onload = () => rimg.classList.add('loaded');
+                        rimg.onerror = () => { rimg.src = `https://via.placeholder.com/192x108.png?text=Ref+${idx+1}`; rimg.alt = ''; rimg.classList.add('loaded'); };
+                        rimg.addEventListener('click', () => window.open(url, '_blank', 'noopener'));
+                        list.appendChild(rimg);
+                    });
+                refs.appendChild(list);
+                modalBody.appendChild(refs);
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal if user clicks outside the white box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Run once on load (no continuous polling)
+        async function loadFramesJson() {
+            try {
+                const res = await fetch('frames.json');
+                if (!res.ok) throw new Error('fetch failed');
+                const json = await res.json();
+                for (const k in json) frameData[Number(k)] = json[k];
+            } catch (e) {
+                // keep existing defaults
+            }
+            renderGrid();
+            // check once for JPG overrides on load
+            checkForNewJPGs();
+        }
+
+        loadFramesJson();
+    </script>
+</body>
+</html>
