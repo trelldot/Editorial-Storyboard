@@ -5,7 +5,7 @@
     "description": "A protaganist starts in a dim room with a wide window. The resolve to take a leap of faith into a strange new world.",
     "process": "Lighting: soft key from top-right; Lens: 50mm; Motion: static; Notes: capture subtle blink.",
     "references": [
-      "images/frame1.png"
+      "images/9831.jpg"
       
     ]
   },
@@ -16,7 +16,10 @@
     "description": "The protaganist takes thea leap of faith into the unknown. They swim through a sea of interesting skies.",
     "process": "Green screen images of people jumping, diving, or falling. COmposiited into scenes of vibrant cloudscapes, landscapes, and city scapes. Encouragement of imaginations from different persecptives (top down, front, close/far). ",
     "references": [
-      "https://via.placeholder.com/1280x720.png?text=Ref+2A"
+      "images/clouddive.jpg",
+      "images/starliusijia.png",
+      "images/hossein-04.jpg",
+      "images/IMG_4742.jpg"
     ]
   },
   "3": {
@@ -25,7 +28,9 @@
     "description": "The protaganist lands in a strange new world. They are captivated by their surroundings.",
     "process": "35-50 mm wide shot. Subjects should be photgraphed both in the pose of their intial impacts, and also from the perspective of them taking in their surroundings. Final image can be edited to feel more fantastical.",
     "references": [
-      "https://via.placeholder.com/1280x720.png?text=Ref+2A"
+      "images/hossein-03.jpg",
+      "images/yamcha.png",
+      "images/after.jpg"
     ]
   },
 
@@ -85,7 +90,11 @@
   "image": "images/kaleidoscope.png", 
   "description": "A protaganizst with mouth covered offers us a gaze into a singular eye..", 
   "process": "70-300 mm telephoto shot. Special attention to face makeup and composition. The singular eye can be edited to reprsent mythical energy.", 
-  "references": [] },
+  "references": [
+    "images/gyro.png",
+    "images/IMG_5622.jpg",
+    "images/SeinaBosey.jpg"
+  ] },
 
 
   "12": { "title": "Rebirth: Dance or Die",
@@ -93,7 +102,9 @@
   "image": "images/danceofjoy.png", 
   "description": "Through deep gratitude for each breath that they draw, our protaganists' bodies move without fear ", 
   "process": "50mm normal shot. Low shutter speed to induce motion blur. Garment can be fashioned as belt or scarf. Encourage twirling movements to capture furls of dress and motion of garment.", 
-  "references": [] },
+  "references": [
+    "images/jolene.png"
+  ] },
 
   "13": { "title": "Rebirth: reaching ever higher...", 
   "image": "images/jumpforjoy.png", 
@@ -106,7 +117,9 @@
   "image": "images/hearnoevil.png", 
   "description": "The Protaganists finally meet each other, and connect through shared pain and experience.", 
   "process": "50mm normal shot. Subjects photographed ins tudio with key garment in place. Horizontal Orientation ", 
-  "references": [] },
+  "references": [
+    "image/images.jpg"
+  ] },
 
   "15": { "title": "Rebirth: Shared Pain", 
   "image": "images/sharedpain.png", 
@@ -131,8 +144,12 @@
   "18": { "title": "Radical Rebirth- And my name is...", 
   "image": "images/rebirth.png", 
   "description": "And at the end of it all, who really am I? My power is having the freedom to decide.", 
-  "process": "50-70 mm normal-telephoto shot. Subjkect should take on heroic, killer pose.", 
-  "references": [] },
+  "process": "50-70 mm normal-telephoto shot. Subject should take on heroic, killer pose.", 
+  "references": [
+    "images/frieza1.png",
+    "images/Layer2.jpg",
+    "images/Layer2.png"
+  ] },
 
 
   "19": { "title": "Outro: The World Runner", 
