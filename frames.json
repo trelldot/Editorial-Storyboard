@@ -1,6 +1,6 @@
 {
   "1": {
-    "title": "Origins",
+    "title": "Origins: Looking through the curious window",
     "image": "images/frame1.png",
     "description": "A protaganist starts in a dim room with a wide window. The resolve to take a leap of faith into a strange new world.",
     "process": "Lighting: soft key from top-right; Lens: 50mm; Motion: static; Notes: capture subtle blink.",
@@ -24,13 +24,16 @@
   },
   "3": {
     "title": "Origins: Crash Landing",
-    "image": "images/crashladning.png",
+    "image": "images/IMG_1800.jpeg",
     "description": "The protaganist lands in a strange new world. They are captivated by their surroundings.",
     "process": "35-50 mm wide shot. Subjects should be photgraphed both in the pose of their intial impacts, and also from the perspective of them taking in their surroundings. Final image can be edited to feel more fantastical.",
     "references": [
       "images/hossein-03.jpg",
       "images/yamcha.png",
-      "images/after.jpg"
+      "images/after.jpg",
+      "images/pose reference 2.jpg",
+      "images/reflection2.jpg",
+      "images/crashladning.png"
     ]
   },
 
@@ -40,7 +43,7 @@
     "description": "Beyond everything they've ever known, they find themselves in a vibrant beautiful world.",
     "process": "35-50 mm wide shot. Subject should be in even lighting. Position subject intentionally in conversation with the landscape. Different focal length can adjust for scale and feel.",
     "references": [
-      "https://via.placeholder.com/1280x720.png?text=Ref+2A"
+      "images/lalesso3.jpg"
     ]
   },
   "5": {
@@ -49,7 +52,6 @@
     "description": "The Flower is a motif for mastery, joy, play, and resilience. As the hero jjourneys through this strange new world, their experiences push them into new understandings of themselves. This process of realization and rebirth repeats over and over and over again.",
     "process": "Captured green screen images of subjects in motion composited into macro images of flowers. Subjects can be silhoutted or color matched. Each protaganist can have a different flower.",
     "references": [
-      "https://via.placeholder.com/1280x720.png?text=Ref+3A"
     ]
   },
   
@@ -65,18 +67,26 @@
   "image": "images/blind archer.png", 
   "description": "The blindfold defies gravity as the archer takes aim.", 
   "process": "50-100mm normal/telephoto shot. Model should be photogrpahed on location to reference lighting and pose. Either on location or edited later, the garment should be manipulated to appear to defy gravity. This could include a green screen and later setup on location or through a seperate session in a studio environment. Image should be taken at Golden Hour lighting. Emphasisis on close up of upper body and face. Image should feel dynamic with a sense of movement. ", 
-  "references": [] },
+  "references": [
+    "images/lalesso1.jpg"
+  ] },
 
   "8": { "title": "Mastery: The Gravity Defying Shroud", 
   "image": "images/gravitydefyingshroud.png", 
   "description": "The shroud defies gravity as the subject takes presence in their world.", 
   "process": "35-50mm wide-normal shot. Model should be photogrpahed on location to reference lighting and pose. Either on location or edited later, the garment should be manipulated to appear to defy gravity. This could include a green screen and later setup on location or through a seperate session in a studio environment. Special emphasiis should be placed on verticality of the shroud.", 
-  "references": [] },
+  "references": [
+    "images/lauw1.jpg"
+  ] },
 
   "9": { "title": "Mastery: The Heroic Figure Stands Tall", 
-  "image": "images/ultrawidenature.png", 
+  "image": "images/IMG_1801.jpeg",
   "description": "The scarf defies gravity as the subject survey their surroundings.", 
-  "process": "50-300 mm normal -telephoto shoot. Model can be photographed in studio or on location. Either on location or edited later, the garment should be manipulated to appear to defy gravity. This could include a green screen and later setup on location or through a seperate session in a studio environment. Image will be editied in 21:9 orientation to give significant horizontality.", "references": [] },
+  "process": "50-300 mm normal -telephoto shoot. Model can be photographed in studio or on location. Either on location or edited later, the garment should be manipulated to appear to defy gravity. This could include a green screen and later setup on location or through a seperate session in a studio environment. Image will be editied in 21:9 orientation to give significant horizontality.", "references": [
+    "images/david agboji.jpg",
+    "images/fafa.jpg",
+    "images/ultrawidenature.png"
+  ] },
 
   
   "10": { "title": "Mastery: Earth King Gaia", 
@@ -93,7 +103,8 @@
   "references": [
     "images/gyro.png",
     "images/IMG_5622.jpg",
-    "images/SeinaBosey.jpg"
+    "images/SeinaBosey.jpg",
+    "images/reflection1.jpg"
   ] },
 
 
@@ -107,10 +118,10 @@
   ] },
 
   "13": { "title": "Rebirth: reaching ever higher...", 
-  "image": "images/jumpforjoy.png", 
+  "image": "images/IMG_1802.jpeg", 
   "description": "Our protaganists desire for life pushes them to push even higher, until the sun rays are theirs to hold.", 
   "process": "35mm wide shot. Subject should be captured doing dymaic poses including running, jumping, and reaching. Sun and cloud elements added in post prodction, or intorduced as backdrop. Subject can be relatively small and/or silhoutted.", 
-  "references": [] },
+  "references": ["images/jumpforjoy.png"] },
 
 
   "14": { "title": "Rebirth: Kindred Spirits", 
@@ -129,17 +140,17 @@
 
 
   "16": { "title": "Rebirth: Cloud Jumper", 
-  "image": "images/cloudjumper1.png", 
+  "image": "images/IMG_1804.jpeg", 
   "description": "Protaganists find shared joy and liberation through their connection, pushing them to reach ever higher.", 
   "process": "Captured green screen images of subjects in motion composited into macro images of clouds. Subjects can be silhoutted or color matched. Each protaganist should ideally be compsoited on image in differnt positions.", 
-  "references": [] },
+  "references": ["images/cloudjumper1.png"] },
 
 
   "17": { "title": "Rebirth: Ascension to Heaven in Broad Daylight", 
-  "image": "images/ascensions2.png", 
+  "image": "images/IMG_1803.jpeg",  
   "description": "Through a lifetime of learning and processing, their souls are cultivated into something beautiful. in front of the entire world, it appears as if they ascend to the clouds.", 
   "process": "35-50mm wide-normal shot. Green screen images of people jumping, diving, or falling. COmposiited into dramatic outdoor scenes. Encouragement of imaginations from different persecptives (top down, front, close/far).", 
-  "references": [] },
+  "references": ["images/ascensions2.png"] },
 
   "18": { "title": "Radical Rebirth- And my name is...", 
   "image": "images/rebirth.png", 
@@ -148,15 +159,16 @@
   "references": [
     "images/frieza1.png",
     "images/Layer2.jpg",
-    "images/Layer2.png"
+    "images/Layer2.png",
+    "image/pose reference.jpg"
   ] },
 
 
   "19": { "title": "Outro: The World Runner", 
-  "image": "images/worldrunner.png", 
+  "image": "images/IMG_1805.jpeg", 
   "description": "The world runner, who jumps from planet to planet in search of new beauty.", 
   "process": "Captured green screen images of subjects in motion composited into Images of planet. Subjects can be silhoutted or color matched. Great flexibility into depcition of planets.", 
-  "references": [] },
+  "references": ["images/worldrunner.png"] },
 
 
   "20": { "title": "Outro: Handsome Planets and Exceptional Asteroids", 

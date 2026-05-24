@@ -325,7 +325,7 @@
             img.style.opacity = '0';
             img.onload = function() { this.style.opacity = '1'; };
             img.onerror = function() {
-                const placeholder = `https://via.placeholder.com/1280x720.png?text=${encodeURIComponent(data.title || 'Frame')}`;
+                const placeholder = ` 'Frame')}`;
                 if (!this._triedSvg && this.src && this.src.endsWith('.jpg')) {
                     this._triedSvg = true;
                     this.src = `images/frame${id}.svg`;
